@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+	var person = function(age,sex){
+		this.age = age;
+		this.sex = sex;
+	};
+	person.prototype.show = function(){
+		document.write("年纪是："+this.age+" "+"性别是："+this.sex);
+	};
+	
+	/*var people = function(age,sex){
+		person.call(this,age,sex);
+	}*/
+	//这里是新一个类
+	
+	var people = function(){
+		person.apply(this,[
+			age = arguments[0],
+			sex = arguments[1]
+		]);
+	}
+	
+	for( var i in person.prototype){
+		person.prototype[i] = people.prototype[i];
+	}
+	
+	var xiao = new person(19,"男");
+	
+	var hong = new people(25,"男");
+</script>
+</head>
+
+<body>
+</body>
+</html>
